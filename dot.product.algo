@@ -1,0 +1,39 @@
+FUNCTION dot_product(V1,V2 : FLOAT): FLOAT
+VAR
+  i: INTEGER
+  PS : FLOAT  
+BEGIN
+    PS := 0
+    FOR i FROM 0 TO V1.length-1 STEP 1  DO
+       PS:= PS + V1[i]*V2[i]
+    END_FOR
+    RETURN PS
+END
+
+ALGORITHM algorithm_PS 
+VAR
+    i,j,n,m :INTEGER  
+    mat_vec : ARRAY_OF FLOAT [50][50];
+    PS : FLOAT
+BEGIN
+
+    REPEAT
+        Write("enter ur vector n")
+        Read(n)
+    UNTIL (n<=50 AND n>=1  AND n%2 =0  )
+    REPEAT
+        Write("enter ur vector m")
+        Read(m)
+    UNTIL (m >= 2 AND m<=50 )    
+    FOR i FROM 0 TO n-1 DO
+        FOR j FROM 0 TO m-1 DO
+            Read(mat_vec[i][j])
+        END_FOR
+    END_FOR
+    FOR i FROM 0 TO n-1 STEP 1 DO 
+        PS:= dot_product(mat_vec[i],mat_vec[i+1])
+        IF (PS=0) THEN
+            Write("ur vect are orthogonal")
+        END_IF
+    END_FOR    
+END
